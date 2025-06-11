@@ -2,16 +2,8 @@ import React, { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { useNotificacionesStore } from "./store/useNotificacionesStore";
-import { useConfigStore } from "./store/useConfigStore"; // <-- Importar config
-
-type Props = {
-  id: string;
-  texto: string;
-  completada: boolean;
-  fecha_creacion: string;
-  fecha_modificacion: string;
-  fecha_realizada?: string | null;
-};
+import { useConfigStore } from "./store/useConfigStore";
+import type { Props } from "../types";
 
 const CheckIcon = ({ completed }: { completed: boolean }) => (
   <svg
@@ -78,11 +70,13 @@ const TareaItem = ({
   const [editando, setEditando] = useState(false);
   const [nuevoTexto, setNuevoTexto] = useState(texto);
 
-  const { notificar } = useNotificacionesStore();
+  // Notificaciones desde el store global
+  const { agregar: notificar } = useNotificacionesStore();
 
-  // Traer configuración global
+  // Configuración global (mayúsculas)
   const descripcionMayusculas = useConfigStore((state) => state.descripcionMayusculas);
 
+  // Mutación para alternar completada
   const toggleMutation = useMutation({
     mutationFn: async () => {
       const ahora = new Date().toISOString();
@@ -106,6 +100,7 @@ const TareaItem = ({
     },
   });
 
+  // Mutación para eliminar tarea
   const deleteMutation = useMutation({
     mutationFn: async () => {
       await axios.delete(`http://localhost:8008/tareas/${id}`);
@@ -119,6 +114,7 @@ const TareaItem = ({
     },
   });
 
+  // Mutación para editar texto
   const editarMutation = useMutation({
     mutationFn: async () => {
       const ahora = new Date().toISOString();

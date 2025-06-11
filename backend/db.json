@@ -11,15 +11,6 @@
   ],
   "tareas": [
     {
-      "id": "4f145d12-e7ee-469f-a8f4-daf9fb1b18ce",
-      "texto": "asd",
-      "completada": false,
-      "fecha_creacion": "2025-06-05T21:34:26.884Z",
-      "fecha_modificacion": "2025-06-05T21:34:26.884Z",
-      "fecha_realizada": null,
-      "tableroId": "69e7"
-    },
-    {
       "id": "a18c1aec-9415-46dc-9b0a-962cddd78327",
       "texto": "asd",
       "completada": false,
@@ -29,13 +20,22 @@
       "tableroId": "1"
     },
     {
-      "id": "6b07b0e6-b5d2-4a3c-9b65-ae24e91e8bda",
+      "id": "9fdcb7c9-0715-4b16-a034-c2b7e9b1f669",
+      "texto": "hola",
+      "completada": false,
+      "fecha_creacion": "2025-06-11T00:34:45.756Z",
+      "fecha_modificacion": "2025-06-11T00:40:01.394Z",
+      "fecha_realizada": null,
+      "tableroId": "69e7"
+    },
+    {
+      "id": "d44fe86c-1e98-4b9b-8f03-1a195874a73f",
       "texto": "asd",
       "completada": false,
-      "fecha_creacion": "2025-06-06T00:23:46.419Z",
-      "fecha_modificacion": "2025-06-06T00:23:46.419Z",
+      "fecha_creacion": "2025-06-11T00:39:49.084Z",
+      "fecha_modificacion": "2025-06-11T00:39:49.084Z",
       "fecha_realizada": null,
-      "tableroId": "1"
+      "tableroId": "69e7"
     }
   ]
 }

@@ -4,7 +4,7 @@ import axios from "axios";
 import { Link, useMatch } from "@tanstack/react-router";
 import { tableroRoute } from "../routes/routes";
 import { useUIStore } from "./store/useUIstore";
-import { useNotificacionesStore } from "../components/store/useNotificacionesStore";
+import { useNotificacionesStore } from "./store/useNotificacionesStore";
 
 type Tablero = {
   id: string;
@@ -15,22 +15,28 @@ const Header = () => {
   const queryClient = useQueryClient();
   const [nuevoNombre, setNuevoNombre] = useState("");
 
+  // Store Zustand para UI
   const { setTableroActivo } = useUIStore();
-  const { agregar: notificar } = useNotificacionesStore(); // ✅ Este es el hook de notificaciones
+  // Store Zustand para notificaciones
+  const { agregar: notificar } = useNotificacionesStore();
 
+  // Obtener el tablero activo desde la URL
   const match = useMatch({ to: tableroRoute.id });
   const tableroActivo = match?.params.tableroId ?? "";
 
+  // Actualizar el store cuando cambia la URL
   useEffect(() => {
     setTableroActivo(tableroActivo);
   }, [tableroActivo, setTableroActivo]);
 
+  // Obtener tableros desde el backend
   const { data: tableros = [] } = useQuery({
     queryKey: ["tableros"],
     queryFn: () =>
       axios.get("http://localhost:8008/tableros").then((res) => res.data),
   });
 
+  // Mutación para crear tablero
   const crearTableroMutation = useMutation({
     mutationFn: async () => {
       if (!nuevoNombre.trim()) return;
@@ -47,6 +53,7 @@ const Header = () => {
     },
   });
 
+  // Mutación para eliminar tablero
   const eliminarTableroMutation = useMutation({
     mutationFn: async (id: string) => {
       await axios.delete(`http://localhost:8008/tableros/${id}`);
@@ -79,7 +86,7 @@ const Header = () => {
     <header className="bg-white text-gray-800 w-full z-50 p-4 fixed top-0 left-0 text-center shadow-sm h-[80px] flex flex-col justify-center respiro-static">
       <h1 className="text-xl font-light tracking-wide select-none">2.DO</h1>
       <nav className="flex justify-center mt-2 space-x-4">
-        {tableros.map((t) => (
+        {tableros.map((t: Tablero) => (
           <div
             key={t.id}
             className="relative group flex items-center space-x-1"
@@ -121,7 +128,6 @@ const Header = () => {
         </button>
       </nav>
       <nav className="flex mt-2 space-x-4">
-        {/* ...tableros... */}
         <Link
           to="/configuracion"
           className="text-sm text-gray-400 ml-4 -mt-12"

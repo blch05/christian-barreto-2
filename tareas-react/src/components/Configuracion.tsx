@@ -2,13 +2,14 @@ import React from "react";
 import { useConfigStore } from "./store/useConfigStore";
 
 const Configuracion = () => {
+  // Hooks del store global de configuración
   const intervaloRefetch = useConfigStore((s) => s.intervaloRefetch);
   const setIntervaloRefetch = useConfigStore((s) => s.setIntervaloRefetch);
   const descripcionMayusculas = useConfigStore((s) => s.descripcionMayusculas);
   const setDescripcionMayusculas = useConfigStore((s) => s.setDescripcionMayusculas);
 
   return (
-    <div className="max-w-xl mx-auto mt-50 bg-white rounded-xl shadow p-8 flex flex-col gap-6">
+    <div className="max-w-xl mx-auto mt-12 bg-white rounded-xl shadow p-8 flex flex-col gap-6">
       <h2 className="text-2xl font-bold mb-4">Configuraciones</h2>
       <div className="flex flex-col gap-4">
         <label className="flex flex-col gap-2">
