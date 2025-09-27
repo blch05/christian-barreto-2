@@ -1,2 +1,2 @@
-Repositorio: falta agregar repositorio 
-...
+Repositorio app expo: https://github.com/blch05/cam-cut
+Repositorio app de reviews: https://github.com/blch05/reviews-libros
